@@ -6,7 +6,7 @@ type ToastMessage = Parameters<typeof hotToast>[0]
 function warning(message: ToastMessage, options?: ToastOptions) {
     return hotToast(message, {
         ...options,
-        icon: options?.icon ?? <TriangleAlertIcon className="size-5 text-amber-600 dark:text-amber-400" />,
+        icon: options?.icon ?? <TriangleAlertIcon className="size-4 text-amber-600 dark:text-amber-400" />,
     })
 }
 
