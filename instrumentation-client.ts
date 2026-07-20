@@ -3,6 +3,8 @@ import { isRedirectError } from "next/dist/client/components/redirect-error"
 
 import { toast } from "@/utils/toast"
 
+import "./generated/polyfills"
+
 createRequestFn.use(async (context, next) => {
     try {
         await next()
