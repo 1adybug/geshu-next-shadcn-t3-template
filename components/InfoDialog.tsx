@@ -21,7 +21,7 @@ export const InfoDialog: FC<InfoDialogProps> = ({ title, description = "查看�
                 <DialogTitle>{title}</DialogTitle>
                 <DialogDescription>{description}</DialogDescription>
             </DialogHeader>
-            <div className="bg-muted max-h-[65vh] overflow-auto rounded-2xl p-4 break-words whitespace-pre-wrap">{children}</div>
+            <div className="max-h-[65vh] overflow-auto whitespace-pre-wrap break-words rounded-2xl bg-muted p-4">{children}</div>
             <DialogFooter>
                 <Button type="button" variant="outline" onClick={onClose}>
                     关闭

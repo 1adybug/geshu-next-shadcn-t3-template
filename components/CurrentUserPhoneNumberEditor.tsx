@@ -3,6 +3,7 @@
 import { type FC, useEffect, useState } from "react"
 
 import { useForm } from "@tanstack/react-form"
+import { clsx } from "deepsea-tools"
 import { LoaderCircleIcon } from "lucide-react"
 import { z } from "zod"
 
@@ -136,7 +137,7 @@ export const CurrentUserPhoneNumberEditor: FC<CurrentUserPhoneNumberEditorProps>
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent showCloseButton={!isUpdateCurrentUserProfilePending}>
+            <DialogContent className={clsx(isUpdateCurrentUserProfilePending && "[&>button]:hidden")}>
                 <DialogHeader>
                     <DialogTitle>修改手机号</DialogTitle>
                     <DialogDescription>需要分别验证当前手机号和新手机号。</DialogDescription>

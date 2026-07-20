@@ -17,7 +17,7 @@ export interface ErrorPageProps extends ComponentProps<"div"> {
 }
 
 export const ErrorPage: FC<ErrorPageProps> = ({ code, title, description, href, link, image, className, ...rest }) => (
-    <div className={clsx("bg-background grid min-h-full grid-cols-1 lg:grid-cols-2", className)} {...rest}>
+    <div className={clsx("grid min-h-full grid-cols-1 bg-background lg:grid-cols-2", className)} {...rest}>
         <div className="flex min-h-svh flex-col p-6 sm:p-8">
             <div className="flex items-center justify-between gap-4">
                 <Brand />
@@ -25,10 +25,10 @@ export const ErrorPage: FC<ErrorPageProps> = ({ code, title, description, href, 
             </div>
             <div className="flex flex-auto items-center py-12">
                 <div>
-                    <div className="text-primary text-sm font-medium">错误代码 {code}</div>
+                    <div className="text-sm font-medium text-primary">错误代码 {code}</div>
                     <h1 className="mt-4 text-5xl font-semibold tracking-tight sm:text-6xl">{title}</h1>
-                    <p className="text-muted-foreground mt-6 max-w-lg text-lg leading-8">{description}</p>
-                    <Link className="text-primary mt-8 inline-flex items-center gap-2 text-sm font-medium hover:underline" href={href}>
+                    <p className="mt-6 max-w-lg text-lg leading-8 text-muted-foreground">{description}</p>
+                    <Link className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline" href={href}>
                         <ArrowLeftIcon className="size-4" />
                         {link}
                     </Link>

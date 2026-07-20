@@ -22,8 +22,8 @@ const Page: FC = async () => {
     const user = await getCurrentUser()
 
     return (
-        <main className="bg-muted/30 min-h-full">
-            <header className="bg-background border-b">
+        <main className="min-h-full bg-muted/30">
+            <header className="border-b bg-background">
                 <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
                     <Brand />
                     <ThemeSwitcher variant="outline" />
@@ -38,25 +38,25 @@ const Page: FC = async () => {
                     <CardContent className="space-y-4">
                         {user ? (
                             <div className="space-y-4">
-                                <div className="bg-muted rounded-2xl p-4">
+                                <div className="rounded-2xl bg-muted p-4">
                                     <div className="font-medium">{user.nickname}</div>
-                                    <div className="text-muted-foreground mt-1 text-sm">{user.name}</div>
+                                    <div className="mt-1 text-sm text-muted-foreground">{user.name}</div>
                                 </div>
                                 <div className="flex flex-wrap gap-2">
-                                    <Button render={<Link href="/profile" />} nativeButton={false}>
-                                        进入个人中心
+                                    <Button asChild>
+                                        <Link href="/profile">进入个人中心</Link>
                                     </Button>
                                     {user.role === UserRole.管理员 && (
-                                        <Button render={<Link href="/admin/user" />} variant="outline" nativeButton={false}>
-                                            用户管理
+                                        <Button asChild variant="outline">
+                                            <Link href="/admin/user">用户管理</Link>
                                         </Button>
                                     )}
                                     <Logout variant="ghost" />
                                 </div>
                             </div>
                         ) : (
-                            <Button render={<Link href="/login" />} nativeButton={false}>
-                                登录系统
+                            <Button asChild>
+                                <Link href="/login">登录系统</Link>
                             </Button>
                         )}
                     </CardContent>

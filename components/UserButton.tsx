@@ -9,12 +9,12 @@ export interface UserData {
     name: string
 }
 
-export interface UserButtonProps extends Omit<ComponentProps<typeof Button>, "children" | "nativeButton" | "render"> {
+export interface UserButtonProps extends Omit<ComponentProps<typeof Button>, "asChild" | "children"> {
     data: UserData
 }
 
 export const UserButton: FC<UserButtonProps> = ({ data: { id, name }, ...rest }) => (
-    <Button render={<Link href={`/admin/user?id=${id}`} />} variant="link" size="xs" nativeButton={false} {...rest}>
-        {name}
+    <Button asChild className="h-6 px-2.5" variant="link" size="sm" {...rest}>
+        <Link href={`/admin/user?id=${id}`}>{name}</Link>
     </Button>
 )

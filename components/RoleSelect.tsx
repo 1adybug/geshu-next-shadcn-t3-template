@@ -25,19 +25,18 @@ export interface RoleSelectProps {
 export const RoleSelect: FC<RoleSelectProps> = ({ id, value: _value, disabled, invalid, onBlur, onValueChange: _onValueChange }) => {
     const [value, setValue] = useInputState<UserRoleParams | undefined>(_value)
 
-    function onValueChange(value: string | null) {
-        if (!value) return
+    function onValueChange(value: string) {
         const nextValue = value as UserRoleParams
         setValue(nextValue)
         _onValueChange?.(nextValue)
     }
 
     return (
-        <Select items={userRoleItems} value={value} disabled={disabled} onValueChange={onValueChange}>
+        <Select value={value} disabled={disabled} onValueChange={onValueChange}>
             <SelectTrigger id={id} className="w-full" aria-invalid={invalid} onBlur={onBlur}>
                 <SelectValue placeholder="选择角色" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="border-border/60 bg-popover/95 backdrop-blur-md">
                 {Object.entries(userRoleItems).map(([value, label]) => (
                     <SelectItem key={value} value={value}>
                         {label}

@@ -23,7 +23,7 @@ import { z } from "zod"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Field, FieldError, FieldLabel } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
@@ -55,11 +55,11 @@ export interface ProfileInformationItemProps extends StrictOmit<ComponentProps<"
 
 export const ProfileInformationItem: FC<ProfileInformationItemProps> = ({ className, icon, label, description, action, children, ...rest }) => (
     <div className={clsx("flex flex-col gap-3 py-4 sm:flex-row sm:items-start", className)} {...rest}>
-        <div className="bg-muted text-muted-foreground flex size-10 flex-none items-center justify-center rounded-2xl">{icon}</div>
+        <div className="flex size-10 flex-none items-center justify-center rounded-2xl bg-muted text-muted-foreground">{icon}</div>
         <div className="min-w-0 flex-auto">
-            <div className="text-muted-foreground text-xs font-medium tracking-wide">{label}</div>
-            <div className="mt-1 min-h-6 text-sm font-medium break-words">{children}</div>
-            {description && <div className="text-muted-foreground mt-1 text-xs">{description}</div>}
+            <div className="text-xs font-medium tracking-wide text-muted-foreground">{label}</div>
+            <div className="mt-1 min-h-6 break-words text-sm font-medium">{children}</div>
+            {description && <div className="mt-1 text-xs text-muted-foreground">{description}</div>}
         </div>
         {action && <div className="flex flex-none items-center sm:pt-1">{action}</div>}
     </div>
@@ -139,21 +139,21 @@ export const CurrentUserProfile: FC<CurrentUserProfileProps> = ({ className, dat
         <div className={clsx("space-y-6", className)} {...rest}>
             <div>
                 <h1 className="text-2xl font-semibold tracking-tight">个人中心</h1>
-                <p className="text-muted-foreground mt-1 text-sm">查看账户信息并维护个人资料。</p>
+                <p className="mt-1 text-sm text-muted-foreground">查看账户信息并维护个人资料。</p>
             </div>
 
             <Card className="relative isolate">
-                <div className="from-primary/20 via-primary/10 to-primary/5 absolute inset-0 -z-10 bg-gradient-to-r" aria-hidden />
+                <div className="absolute inset-0 -z-10 bg-gradient-to-r from-primary/20 via-primary/10 to-primary/5" aria-hidden />
                 <CardContent className="flex flex-col gap-5 pt-8 sm:flex-row sm:items-end">
-                    <Avatar className="ring-card size-24 flex-none shadow-sm ring-4">
-                        <AvatarFallback className="bg-primary text-primary-foreground text-3xl font-semibold">{getAvatarText(currentUser)}</AvatarFallback>
+                    <Avatar className="size-24 flex-none shadow-sm ring-4 ring-card">
+                        <AvatarFallback className="bg-primary text-3xl font-semibold text-primary-foreground">{getAvatarText(currentUser)}</AvatarFallback>
                     </Avatar>
                     <div className="min-w-0 flex-auto pb-1">
                         <div className="flex flex-wrap items-center gap-2">
                             <h2 className="truncate text-2xl font-semibold tracking-tight">{currentUser.nickname}</h2>
                             <Badge variant={currentUser.role === UserRole.管理员 ? "default" : "secondary"}>{roleName}</Badge>
                         </div>
-                        <div className="text-muted-foreground mt-2 flex flex-wrap gap-x-5 gap-y-2 text-sm">
+                        <div className="mt-2 flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted-foreground">
                             <span className="inline-flex items-center gap-1.5">
                                 <AtSignIcon className="size-4" />
                                 {currentUser.name}
@@ -164,8 +164,8 @@ export const CurrentUserProfile: FC<CurrentUserProfileProps> = ({ className, dat
                             </span>
                         </div>
                     </div>
-                    <div className="bg-background/70 text-muted-foreground ring-foreground/5 flex flex-none items-center gap-2 rounded-2xl px-3 py-2 text-xs ring-1 backdrop-blur-sm">
-                        <ShieldCheckIcon className="text-primary size-4" />
+                    <div className="flex flex-none items-center gap-2 rounded-2xl bg-background/70 px-3 py-2 text-xs text-muted-foreground ring-1 ring-foreground/5 backdrop-blur-sm">
+                        <ShieldCheckIcon className="size-4 text-primary" />
                         账户状态正常
                     </div>
                 </CardContent>
@@ -173,15 +173,17 @@ export const CurrentUserProfile: FC<CurrentUserProfileProps> = ({ className, dat
 
             <div className="grid gap-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(300px,0.8fr)]">
                 <Card>
-                    <CardHeader className="border-b">
-                        <CardTitle>个人资料</CardTitle>
-                        <CardDescription>用于识别账户和接收验证信息。</CardDescription>
-                        <CardAction>
+                    <CardHeader className="flex-row items-start justify-between gap-4 space-y-0 border-b">
+                        <div className="space-y-1.5">
+                            <CardTitle>个人资料</CardTitle>
+                            <CardDescription>用于识别账户和接收验证信息。</CardDescription>
+                        </div>
+                        <div className="flex-none">
                             <Badge variant="outline">
                                 <UserRoundIcon data-icon="inline-start" />
                                 个人账户
                             </Badge>
-                        </CardAction>
+                        </div>
                     </CardHeader>
                     <CardContent>
                         <ProfileInformationItem
@@ -284,7 +286,7 @@ export const CurrentUserProfile: FC<CurrentUserProfileProps> = ({ className, dat
                     </CardHeader>
                     <CardContent>
                         <ProfileInformationItem icon={<IdCardIcon className="size-5" />} label="账号 ID" description="用于系统内部识别此账户。">
-                            <span className="font-mono text-xs break-all">{currentUser.id}</span>
+                            <span className="break-all font-mono text-xs">{currentUser.id}</span>
                         </ProfileInformationItem>
                         <Separator />
                         <ProfileInformationItem icon={<CalendarPlusIcon className="size-5" />} label="注册时间">
@@ -295,8 +297,8 @@ export const CurrentUserProfile: FC<CurrentUserProfileProps> = ({ className, dat
                             {formatDateTime(currentUser.updatedAt)}
                         </ProfileInformationItem>
                     </CardContent>
-                    <CardFooter className="text-muted-foreground gap-2 border-t text-xs">
-                        <ShieldCheckIcon className="text-primary size-4" />
+                    <CardFooter className="gap-2 border-t text-xs text-muted-foreground">
+                        <ShieldCheckIcon className="size-4 text-primary" />
                         账户标识和时间记录不可手动修改。
                     </CardFooter>
                 </Card>

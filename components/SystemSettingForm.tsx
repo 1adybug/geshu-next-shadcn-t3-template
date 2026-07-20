@@ -71,12 +71,12 @@ const SystemSettingInput: FC<SystemSettingInputProps> = ({ setting, value, disab
             <Select
                 value={value === "" || value === undefined ? "default" : `${value}`}
                 disabled={disabled}
-                onValueChange={nextValue => onValueChange(nextValue === "default" ? "" : (nextValue ?? ""))}
+                onValueChange={nextValue => onValueChange(nextValue === "default" ? "" : nextValue)}
             >
                 <SelectTrigger className="w-full" aria-invalid={invalid} onBlur={onBlur}>
                     <SelectValue placeholder="默认" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="border-border/60 bg-popover/95 backdrop-blur-md">
                     <SelectItem value="default">默认</SelectItem>
                     <SelectItem value="1">开启</SelectItem>
                     <SelectItem value="0">关闭</SelectItem>
@@ -140,7 +140,7 @@ export const SystemSettingForm: FC<SystemSettingFormProps> = ({ className, ...re
             <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                 <div>
                     <h1 className="text-2xl font-semibold tracking-tight">系统设置</h1>
-                    <p className="text-muted-foreground mt-1 text-sm">调整保存后立即生效的运行时配置，密钥字段保持隐藏。</p>
+                    <p className="mt-1 text-sm text-muted-foreground">调整保存后立即生效的运行时配置，密钥字段保持隐藏。</p>
                 </div>
                 <form.Subscribe selector={state => [state.canSubmit, state.isSubmitting, state.isPristine]}>
                     {([canSubmit, isSubmitting, isPristine]) => (

@@ -27,7 +27,11 @@ export interface ConfirmButtonProps extends Omit<ComponentProps<typeof Button>, 
 
 export const ConfirmButton: FC<ConfirmButtonProps> = ({ children, title, description, pending, confirmText = "确认", onConfirm, ...rest }) => (
     <AlertDialog>
-        <AlertDialogTrigger render={<Button disabled={pending} {...rest} />}>{children}</AlertDialogTrigger>
+        <AlertDialogTrigger asChild>
+            <Button disabled={pending} {...rest}>
+                {children}
+            </Button>
+        </AlertDialogTrigger>
         <AlertDialogContent>
             <AlertDialogHeader>
                 <AlertDialogTitle>{title}</AlertDialogTitle>

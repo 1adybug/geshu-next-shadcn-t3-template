@@ -3,6 +3,7 @@
 import { type FC, useEffect } from "react"
 
 import { useForm } from "@tanstack/react-form"
+import { clsx } from "deepsea-tools"
 import { LoaderCircleIcon } from "lucide-react"
 import { z } from "zod"
 
@@ -86,7 +87,7 @@ export const BanUserEditor: FC<BanUserEditorProps> = ({ id, open = false, onClos
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent showCloseButton={!isPending}>
+            <DialogContent className={clsx(isPending && "[&>button]:hidden")}>
                 <DialogHeader>
                     <DialogTitle>封禁用户 {data?.name}</DialogTitle>
                     <DialogDescription>可以设置到期时间，留空表示永久封禁。</DialogDescription>

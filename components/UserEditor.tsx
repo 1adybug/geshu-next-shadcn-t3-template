@@ -3,6 +3,7 @@
 import { type FC, useEffect } from "react"
 
 import { useForm } from "@tanstack/react-form"
+import { clsx } from "deepsea-tools"
 import { LoaderCircleIcon } from "lucide-react"
 
 import { RoleSelect } from "@/components/RoleSelect"
@@ -87,7 +88,7 @@ export const UserEditor: FC<UserEditorProps> = ({ id, open = false, onClose }) =
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent showCloseButton={!isPending}>
+            <DialogContent className={clsx(isPending && "[&>button]:hidden")}>
                 <DialogHeader>
                     <DialogTitle>{isUpdate ? "修改用户" : "新增用户"}</DialogTitle>
                     <DialogDescription>填写用户基础信息并选择系统角色。</DialogDescription>

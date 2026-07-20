@@ -173,9 +173,9 @@ const Page: FC = () => {
             cell: ({ row }) =>
                 row.original.params ? (
                     <Button
-                        className="max-w-48 justify-start truncate px-0"
+                        className="h-6 max-w-48 justify-start truncate px-0"
                         variant="link"
-                        size="xs"
+                        size="sm"
                         onClick={() => setInfo({ title: "操作参数", content: <JsonViewer value={parseJson(row.original.params!)} />, wide: true })}
                     >
                         {row.original.params}
@@ -192,9 +192,9 @@ const Page: FC = () => {
             cell: ({ row }) =>
                 row.original.userAgent ? (
                     <Button
-                        className="max-w-48 justify-start truncate px-0"
+                        className="h-6 max-w-48 justify-start truncate px-0"
                         variant="link"
-                        size="xs"
+                        size="sm"
                         onClick={() => setInfo({ title: "UserAgent", content: row.original.userAgent })}
                     >
                         {row.original.userAgent}
@@ -243,7 +243,7 @@ const Page: FC = () => {
         <div className="space-y-6">
             <div>
                 <h1 className="text-2xl font-semibold tracking-tight">操作日志</h1>
-                <p className="text-muted-foreground mt-1 text-sm">查询系统内发生的业务操作与调用参数。</p>
+                <p className="mt-1 text-sm text-muted-foreground">查询系统内发生的业务操作与调用参数。</p>
             </div>
             <Card>
                 <CardContent>

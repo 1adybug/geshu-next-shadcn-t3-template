@@ -266,7 +266,8 @@ const Page: FC = () => {
             cell: ({ row }) => (
                 <div className="flex items-center gap-1">
                     <Button
-                        size="xs"
+                        className="h-6 px-2.5"
+                        size="sm"
                         variant="ghost"
                         disabled={isRequesting}
                         onClick={() => {
@@ -277,18 +278,26 @@ const Page: FC = () => {
                         编辑
                     </Button>
                     {row.original.banned ? (
-                        <ConfirmButton title="确认解封用户" size="xs" variant="ghost" pending={isUnbanUserPending} onConfirm={() => unbanUser(row.original.id)}>
+                        <ConfirmButton
+                            className="h-6 px-2.5"
+                            title="确认解封用户"
+                            size="sm"
+                            variant="ghost"
+                            pending={isUnbanUserPending}
+                            onConfirm={() => unbanUser(row.original.id)}
+                        >
                             解封
                         </ConfirmButton>
                     ) : (
-                        <Button size="xs" variant="ghost" disabled={isRequesting} onClick={() => setBanId(row.original.id)}>
+                        <Button className="h-6 px-2.5" size="sm" variant="ghost" disabled={isRequesting} onClick={() => setBanId(row.original.id)}>
                             封禁
                         </Button>
                     )}
                     <ConfirmButton
+                        className="h-6 px-2.5"
                         title="确认删除用户"
                         description="请在删除用户前确保已备份相关数据，此操作不可撤销。"
-                        size="xs"
+                        size="sm"
                         variant="destructive"
                         pending={isDeleteUserPending}
                         onConfirm={() => deleteUser(row.original.id)}
@@ -409,7 +418,7 @@ const Page: FC = () => {
             <div className="flex flex-col gap-4 xl:flex-row xl:items-start xl:justify-between">
                 <div>
                     <h1 className="text-2xl font-semibold tracking-tight">用户管理</h1>
-                    <p className="text-muted-foreground mt-1 text-sm">管理用户资料、状态与批量数据。</p>
+                    <p className="mt-1 text-sm text-muted-foreground">管理用户资料、状态与批量数据。</p>
                 </div>
                 <div className="flex flex-wrap gap-2">
                     <Button variant="outline" disabled={isRequesting} onClick={() => void onDownloadTemplate()}>

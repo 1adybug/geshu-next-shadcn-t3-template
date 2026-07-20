@@ -21,11 +21,11 @@ export const Toaster: FC = () => (
             style: {
                 maxWidth: "min(24rem, calc(100vw - 1.5rem))",
                 padding: "0.5rem 0.625rem",
-                color: "var(--popover-foreground)",
-                background: "var(--popover)",
-                border: "1px solid var(--border)",
+                color: "hsl(var(--popover-foreground))",
+                background: "hsl(var(--popover) / 0.95)",
+                border: "1px solid hsl(var(--border) / 0.6)",
                 borderRadius: "calc(var(--radius) * 1.8)",
-                boxShadow: "0 4px 12px color-mix(in oklab, var(--foreground) 10%, transparent)",
+                boxShadow: "0 4px 12px color-mix(in oklab, hsl(var(--foreground)) 10%, transparent)",
             },
             success: {
                 duration: 3500,
@@ -33,11 +33,11 @@ export const Toaster: FC = () => (
             },
             error: {
                 duration: 5000,
-                icon: <CircleXIcon className="text-destructive size-4" />,
+                icon: <CircleXIcon className="size-4 text-destructive" />,
             },
             loading: {
                 duration: Infinity,
-                icon: <LoaderCircleIcon className="text-primary size-4 animate-spin" />,
+                icon: <LoaderCircleIcon className="size-4 animate-spin text-primary" />,
             },
         }}
     >
@@ -46,10 +46,10 @@ export const Toaster: FC = () => (
                 {({ icon, message }) => (
                     <div className="flex min-w-0 items-center gap-2">
                         <span className="flex size-4 flex-none items-center justify-center">{icon}</span>
-                        <div className="min-w-0 flex-1 text-sm leading-4 font-medium">{message}</div>
+                        <div className="min-w-0 flex-1 text-sm font-medium leading-4">{message}</div>
                         {currentToast.type !== "loading" && (
                             <button
-                                className="text-muted-foreground hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring ml-0.5 inline-flex size-6 flex-none items-center justify-center rounded-xl transition-colors focus-visible:ring-2 focus-visible:outline-none"
+                                className="ml-0.5 inline-flex size-6 flex-none items-center justify-center rounded-xl text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                                 type="button"
                                 aria-label="关闭通知"
                                 onClick={() => toast.dismiss(currentToast.id)}

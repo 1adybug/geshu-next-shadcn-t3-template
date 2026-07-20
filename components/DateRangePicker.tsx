@@ -45,13 +45,13 @@ export const DateRangePicker: FC<DateRangePickerProps> = ({ value: _value, onVal
     return (
         <div className="flex w-full min-w-0 items-center gap-1 sm:w-auto">
             <Popover>
-                <PopoverTrigger
-                    render={<Button className="min-w-0 flex-auto justify-start font-normal sm:min-w-56" type="button" variant="outline" {...rest} />}
-                >
-                    <CalendarDaysIcon />
-                    <span className="truncate">{label}</span>
+                <PopoverTrigger asChild>
+                    <Button className="min-w-0 flex-auto justify-start font-normal sm:min-w-56" type="button" variant="outline" {...rest}>
+                        <CalendarDaysIcon />
+                        <span className="truncate">{label}</span>
+                    </Button>
                 </PopoverTrigger>
-                <PopoverContent className="w-auto p-0" align="start">
+                <PopoverContent className="w-auto border-border/60 bg-popover/95 p-0 backdrop-blur-md" align="start">
                     <Calendar
                         mode="range"
                         locale={zhCN}
@@ -64,7 +64,7 @@ export const DateRangePicker: FC<DateRangePickerProps> = ({ value: _value, onVal
                 </PopoverContent>
             </Popover>
             {value?.from && (
-                <Button type="button" variant="ghost" size="icon-sm" aria-label="清除日期范围" onClick={onClear}>
+                <Button className="h-7 w-7" type="button" variant="ghost" size="icon" aria-label="清除日期范围" onClick={onClear}>
                     <XIcon />
                 </Button>
             )}

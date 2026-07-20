@@ -187,9 +187,9 @@ const Page: FC = () => {
             enableSorting: true,
             cell: ({ row }) => (
                 <Button
-                    className="max-w-48 justify-start truncate px-0"
+                    className="h-6 max-w-48 justify-start truncate px-0"
                     variant="link"
-                    size="xs"
+                    size="sm"
                     onClick={() => setInfo({ title: "错误消息", content: row.original.message })}
                 >
                     {row.original.message}
@@ -202,9 +202,9 @@ const Page: FC = () => {
             cell: ({ row }) =>
                 row.original.stack ? (
                     <Button
-                        className="max-w-48 justify-start truncate px-0"
+                        className="h-6 max-w-48 justify-start truncate px-0"
                         variant="link"
-                        size="xs"
+                        size="sm"
                         onClick={() => setInfo({ title: "错误堆栈", content: row.original.stack, wide: true })}
                     >
                         {row.original.stack}
@@ -220,9 +220,9 @@ const Page: FC = () => {
             cell: ({ row }) =>
                 row.original.params ? (
                     <Button
-                        className="max-w-48 justify-start truncate px-0"
+                        className="h-6 max-w-48 justify-start truncate px-0"
                         variant="link"
-                        size="xs"
+                        size="sm"
                         onClick={() => setInfo({ title: "错误参数", content: <JsonViewer value={parseJson(row.original.params!)} />, wide: true })}
                     >
                         {row.original.params}
@@ -239,9 +239,9 @@ const Page: FC = () => {
             cell: ({ row }) =>
                 row.original.userAgent ? (
                     <Button
-                        className="max-w-48 justify-start truncate px-0"
+                        className="h-6 max-w-48 justify-start truncate px-0"
                         variant="link"
-                        size="xs"
+                        size="sm"
                         onClick={() => setInfo({ title: "UserAgent", content: row.original.userAgent })}
                     >
                         {row.original.userAgent}
@@ -292,7 +292,7 @@ const Page: FC = () => {
         <div className="space-y-6">
             <div>
                 <h1 className="text-2xl font-semibold tracking-tight">错误日志</h1>
-                <p className="text-muted-foreground mt-1 text-sm">查询异常消息、调用堆栈与请求上下文。</p>
+                <p className="mt-1 text-sm text-muted-foreground">查询异常消息、调用堆栈与请求上下文。</p>
             </div>
             <Card>
                 <CardContent>

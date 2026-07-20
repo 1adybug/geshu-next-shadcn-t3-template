@@ -8,7 +8,7 @@ export interface LayoutProps {
 }
 
 const Layout: FC<LayoutProps> = ({ children }) => (
-    <main className="bg-background grid min-h-full grid-cols-1 lg:grid-cols-2">
+    <main className="grid min-h-full grid-cols-1 bg-background lg:grid-cols-2">
         <div className="flex min-h-svh flex-col p-5 sm:p-8">
             <div className="flex items-center justify-between gap-4">
                 <Brand />

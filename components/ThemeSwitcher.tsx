@@ -20,11 +20,13 @@ export const ThemeSwitcher: FC<ThemeSwitcherProps> = ({ type = "button", variant
 
     return (
         <DropdownMenu>
-            <DropdownMenuTrigger render={<Button type={type} variant={variant} size={size} disabled={!mounted} {...rest} />}>
-                <ThemeIcon />
-                <span className="sr-only">切换主题</span>
+            <DropdownMenuTrigger asChild>
+                <Button type={type} variant={variant} size={size} disabled={!mounted} {...rest}>
+                    <ThemeIcon />
+                    <span className="sr-only">切换主题</span>
+                </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-36">
+            <DropdownMenuContent className="w-36 border-border/60 bg-popover/95 backdrop-blur-md" align="end">
                 <DropdownMenuItem onClick={() => setTheme("system")}>
                     <MonitorIcon />
                     跟随系统

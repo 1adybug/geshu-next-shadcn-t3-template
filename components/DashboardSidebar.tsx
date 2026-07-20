@@ -99,9 +99,11 @@ const SidebarNavGroup: FC<SidebarNavGroupProps> = ({ label, navs, user }) => {
 
                         return (
                             <SidebarMenuItem key={href}>
-                                <SidebarMenuButton render={<Link href={href} onClick={onNavigate} />} isActive={isActive}>
-                                    <Icon />
-                                    <span>{name}</span>
+                                <SidebarMenuButton asChild isActive={isActive}>
+                                    <Link href={href} onClick={onNavigate}>
+                                        <Icon />
+                                        <span>{name}</span>
+                                    </Link>
                                 </SidebarMenuButton>
                             </SidebarMenuItem>
                         )
@@ -125,18 +127,18 @@ export const DashboardSidebar: FC = () => {
                 <SidebarNavGroup label="系统管理" navs={adminNavs} user={user} />
             </SidebarContent>
             <SidebarFooter className="border-t p-3">
-                <div className="bg-sidebar-accent/60 flex items-center gap-2 rounded-2xl p-2">
-                    <div className="bg-primary/10 text-primary flex size-9 flex-none items-center justify-center rounded-full">
+                <div className="flex items-center gap-2 rounded-2xl bg-sidebar-accent/60 p-2">
+                    <div className="flex size-9 flex-none items-center justify-center rounded-full bg-primary/10 text-primary">
                         <CircleUserRoundIcon className="size-5" />
                     </div>
                     <div className="min-w-0 flex-auto">
                         <div className="truncate text-sm font-medium">{user.nickname}</div>
-                        <div className="text-muted-foreground truncate text-xs">{user.name}</div>
+                        <div className="truncate text-xs text-muted-foreground">{user.name}</div>
                     </div>
-                    <ThemeSwitcher size="icon-sm" className="flex-none" />
+                    <ThemeSwitcher className="h-7 w-7 flex-none" size="icon" />
                 </div>
                 <div className="grid grid-cols-2 gap-2">
-                    <Link href="/" className="bg-background hover:bg-muted inline-flex h-8 items-center justify-center gap-1.5 rounded-2xl border px-3 text-sm">
+                    <Link href="/" className="inline-flex h-8 items-center justify-center gap-1.5 rounded-2xl border bg-background px-3 text-sm hover:bg-muted">
                         <HouseIcon className="size-4" />
                         公开首页
                     </Link>

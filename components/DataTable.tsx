@@ -66,7 +66,7 @@ export function DataTable<TData extends RowData>({
 
     return (
         <div className="space-y-3">
-            <div className="bg-card overflow-hidden rounded-2xl border">
+            <div className="overflow-hidden rounded-2xl border bg-card">
                 <div className="overflow-x-auto">
                     <Table>
                         <TableHeader>
@@ -76,7 +76,7 @@ export function DataTable<TData extends RowData>({
                                         const sorted = header.column.getIsSorted()
 
                                         return (
-                                            <TableHead key={header.id} className="h-11 text-center whitespace-nowrap">
+                                            <TableHead key={header.id} className="h-11 whitespace-nowrap text-center">
                                                 {header.isPlaceholder ? null : header.column.getCanSort() ? (
                                                     <Button className="mx-auto h-8 px-2" variant="ghost" onClick={header.column.getToggleSortingHandler()}>
                                                         {flexRender(header.column.columnDef.header, header.getContext())}
@@ -106,7 +106,7 @@ export function DataTable<TData extends RowData>({
                                 table.getRowModel().rows.map(row => (
                                     <TableRow key={row.id}>
                                         {row.getVisibleCells().map(cell => (
-                                            <TableCell key={cell.id} className="text-center whitespace-nowrap [&>div]:justify-center">
+                                            <TableCell key={cell.id} className="whitespace-nowrap text-center [&>div]:justify-center">
                                                 {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                             </TableCell>
                                         ))}
@@ -114,7 +114,7 @@ export function DataTable<TData extends RowData>({
                                 ))
                             ) : (
                                 <TableRow>
-                                    <TableCell className="text-muted-foreground h-32 text-center" colSpan={columns.length}>
+                                    <TableCell className="h-32 text-center text-muted-foreground" colSpan={columns.length}>
                                         {emptyContent}
                                     </TableCell>
                                 </TableRow>
@@ -123,7 +123,7 @@ export function DataTable<TData extends RowData>({
                     </Table>
                 </div>
             </div>
-            <div className="text-muted-foreground flex flex-col gap-3 text-sm sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex flex-col gap-3 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
                 <div>共 {total} 条</div>
                 <div className="flex flex-wrap items-center gap-2">
                     <span>每页</span>
@@ -131,7 +131,7 @@ export function DataTable<TData extends RowData>({
                         <SelectTrigger className="w-20">
                             <SelectValue />
                         </SelectTrigger>
-                        <SelectContent>
+                        <SelectContent className="border-border/60 bg-popover/95 backdrop-blur-md">
                             {[10, 20, 50, 100].map(size => (
                                 <SelectItem key={size} value={`${size}`}>
                                     {size}
@@ -142,19 +142,37 @@ export function DataTable<TData extends RowData>({
                     <span>
                         第 {pageNum} / {pageCount} 页
                     </span>
-                    <Button variant="outline" size="icon-sm" disabled={pageNum <= 1 || loading} onClick={() => onPageChange(1, pageSize)}>
+                    <Button className="h-7 w-7" variant="outline" size="icon" disabled={pageNum <= 1 || loading} onClick={() => onPageChange(1, pageSize)}>
                         <ChevronsLeftIcon />
                         <span className="sr-only">第一页</span>
                     </Button>
-                    <Button variant="outline" size="icon-sm" disabled={pageNum <= 1 || loading} onClick={() => onPageChange(pageNum - 1, pageSize)}>
+                    <Button
+                        className="h-7 w-7"
+                        variant="outline"
+                        size="icon"
+                        disabled={pageNum <= 1 || loading}
+                        onClick={() => onPageChange(pageNum - 1, pageSize)}
+                    >
                         <ChevronLeftIcon />
                         <span className="sr-only">上一页</span>
                     </Button>
-                    <Button variant="outline" size="icon-sm" disabled={pageNum >= pageCount || loading} onClick={() => onPageChange(pageNum + 1, pageSize)}>
+                    <Button
+                        className="h-7 w-7"
+                        variant="outline"
+                        size="icon"
+                        disabled={pageNum >= pageCount || loading}
+                        onClick={() => onPageChange(pageNum + 1, pageSize)}
+                    >
                         <ChevronRightIcon />
                         <span className="sr-only">下一页</span>
                     </Button>
-                    <Button variant="outline" size="icon-sm" disabled={pageNum >= pageCount || loading} onClick={() => onPageChange(pageCount, pageSize)}>
+                    <Button
+                        className="h-7 w-7"
+                        variant="outline"
+                        size="icon"
+                        disabled={pageNum >= pageCount || loading}
+                        onClick={() => onPageChange(pageCount, pageSize)}
+                    >
                         <ChevronsRightIcon />
                         <span className="sr-only">最后一页</span>
                     </Button>
