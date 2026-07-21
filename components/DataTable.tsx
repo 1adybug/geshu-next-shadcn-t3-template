@@ -261,7 +261,7 @@ export function DataTable<TData extends RowData>({
                                         {row.getVisibleCells().map(cell => (
                                             <TableCell
                                                 key={cell.id}
-                                                className={cn("text-center whitespace-nowrap [&>div]:justify-center", getPinnedColumnClassName(cell.column))}
+                                                className={cn("truncate text-center [&>div]:justify-center", getPinnedColumnClassName(cell.column))}
                                                 style={getTableColumnStyle(cell.column)}
                                             >
                                                 {flexRender(cell.column.columnDef.cell, cell.getContext())}
